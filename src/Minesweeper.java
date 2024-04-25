@@ -26,6 +26,7 @@ public class Minesweeper {
     JLabel textLabel = new JLabel();
     JPanel textPanel = new JPanel();
     JPanel boardPanel = new JPanel();
+    JButton playAgain = new JButton("Play Again");
 
     int mineCount = 10;
     MineTile[][] board = new MineTile[numRows][numCols];
@@ -50,6 +51,17 @@ public class Minesweeper {
         textPanel.setLayout(new BorderLayout());
         textPanel.add(textLabel);
         frame.add(textPanel, BorderLayout.NORTH);
+
+        frame.add(playAgain, BorderLayout.SOUTH);
+
+        playAgain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (gameOver) {
+                    new Minesweeper();
+                }
+            }
+        });
 
         boardPanel.setLayout(new GridLayout(numRows, numCols));
         frame.add(boardPanel);
