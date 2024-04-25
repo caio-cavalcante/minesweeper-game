@@ -33,7 +33,7 @@ public class Minesweeper {
     Random random = new Random();
 
     int tilesClicked = 0;
-    boolean gameOver = false;;
+    boolean gameOver = false;
 
     Minesweeper() {
         frame.setSize(boardWidth, boardHeight);
@@ -80,7 +80,7 @@ public class Minesweeper {
                                }
                            }
                        } else if (e.getButton() == MouseEvent.BUTTON3) {
-                           if (tile.getText() == "" && tile.isEnabled()) {
+                           if (Objects.equals(tile.getText(), "") && tile.isEnabled()) {
                                tile.setText("🚩");
                            } else if (Objects.equals(tile.getText(), "🚩")) {
                                tile.setText("");
@@ -98,7 +98,7 @@ public class Minesweeper {
     }
 
     void setMines() {
-        mineList = new ArrayList<MineTile>();
+        mineList = new ArrayList<>();
         int mineLeft = mineCount;
         while (mineLeft > 0) {
             int r = random.nextInt(numRows);
@@ -172,6 +172,4 @@ public class Minesweeper {
             return 1;
         } return 0;
     }
-
-    // reduzir numero de minas em label com getText e mineCount--
 }
