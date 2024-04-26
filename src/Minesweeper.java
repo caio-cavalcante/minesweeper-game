@@ -56,12 +56,7 @@ public class Minesweeper {
         playAgainButton.setFocusable(false);
         frame.add(playAgainButton, BorderLayout.SOUTH);
 
-        playAgainButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playAgain();
-            }
-        });
+        playAgainButton.addActionListener(e -> playAgain());
 
         boardPanel.setLayout(new GridLayout(numRows, numCols));
         frame.add(boardPanel);
