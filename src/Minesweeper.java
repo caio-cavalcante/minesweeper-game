@@ -26,7 +26,7 @@ public class Minesweeper {
     JLabel textLabel = new JLabel();
     JPanel textPanel = new JPanel();
     JPanel boardPanel = new JPanel();
-    JButton playAgain = new JButton("Play Again");
+    JButton playAgainButton = new JButton("Play Again");
 
     int mineCount = 10;
     MineTile[][] board = new MineTile[numRows][numCols];
@@ -52,14 +52,14 @@ public class Minesweeper {
         textPanel.add(textLabel);
         frame.add(textPanel, BorderLayout.NORTH);
 
-        frame.add(playAgain, BorderLayout.SOUTH);
+        playAgainButton.setFont(new Font("Arial", Font.BOLD, 25));
+        playAgainButton.setFocusable(false);
+        frame.add(playAgainButton, BorderLayout.SOUTH);
 
-        playAgain.addActionListener(new ActionListener() {
+        playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (gameOver) {
-                    new Minesweeper();
-                }
+                playAgain();
             }
         });
 
@@ -183,5 +183,21 @@ public class Minesweeper {
         if (mineList.contains(board[r][c])) {
             return 1;
         } return 0;
+    }
+
+    void playAgain() {
+        gameOver = false;
+        tilesClicked = 0;
+        textLabel.setText("Mines: " + mineCount);
+
+        for (int r = 0; r < numRows; r++) {
+            for (int c = 0; c < numCols; c++) {
+                MineTile tile = board[r][c];
+                tile.setText("");
+                tile.setEnabled(true);
+            }
+        }
+
+        setMines();
     }
 }
